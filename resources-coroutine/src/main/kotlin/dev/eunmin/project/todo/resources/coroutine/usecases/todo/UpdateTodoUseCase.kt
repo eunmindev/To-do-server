@@ -14,7 +14,7 @@ class UpdateTodoUseCase (
 ): UseCase<RequestTodo, T_Todo> {
     override suspend fun execute(request: RequestTodo): T_Todo {
         request.id?: throw BadParameterException("죄송합니다. 파라미터 값이 잘 못 되었습니다.")
-        val todo = todoRepository.getTodo(request.id).copy(title = request.title, content = request.title, updateDate = now())
+        val todo = todoRepository.getTodo(request.id).copy(title = request.title, content = request.content, updateDate = now())
         return todoRepository.saveTodo(todo)
     }
 }

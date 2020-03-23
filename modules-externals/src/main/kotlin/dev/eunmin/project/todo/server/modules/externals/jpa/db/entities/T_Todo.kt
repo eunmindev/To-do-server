@@ -1,13 +1,14 @@
 package dev.eunmin.project.todo.server.modules.externals.jpa.db.entities
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import java.time.LocalDateTime
+import javax.persistence.*
 
 @Entity
 data class T_Todo (
-        @Id @GeneratedValue
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Long?,
         val title: String,
-        val content: String
+        val content: String,
+        val createDate: LocalDateTime,
+        val updateDate: LocalDateTime
 )

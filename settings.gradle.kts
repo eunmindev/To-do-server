@@ -1,3 +1,3 @@
 rootProject.name = "TodoServer"
 
-include ("authorization", "modules-commons", "modules-cores", "modules-externals", "resources-todo")
+include ("modules-commons", "modules-externals", "resources-todo", "resources-coroutine")

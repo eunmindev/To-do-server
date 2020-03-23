@@ -30,7 +30,7 @@ class TodoController (
             useCase = provideTodosUseCase,
             responseConverter = { it.map(T_Todo::dto) }
     )
-    
+
 
     @PostMapping("/todo")
     suspend fun saveTodo(@RequestBody request: RequestTodo): ResponseTodo = useCaseExecutor(

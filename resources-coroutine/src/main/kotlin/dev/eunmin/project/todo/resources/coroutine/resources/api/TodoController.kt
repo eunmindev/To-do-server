@@ -3,6 +3,7 @@ package dev.eunmin.project.todo.resources.coroutine.resources.api
 import dev.eunmin.project.todo.server.modules.commons.usecase.UseCaseExecutor
 import dev.eunmin.project.todo.server.modules.externals.jpa.db.entities.T_Todo
 import dev.eunmin.project.todo.resources.coroutine.resources.dto.request.RequestTodo
+import dev.eunmin.project.todo.resources.coroutine.resources.dto.request.core
 import dev.eunmin.project.todo.resources.coroutine.resources.dto.response.ResponseTodo
 import dev.eunmin.project.todo.resources.coroutine.resources.dto.response.dto
 import dev.eunmin.project.todo.resources.coroutine.usecases.todo.*
@@ -36,15 +37,15 @@ class TodoController (
     suspend fun saveTodo(@RequestBody request: RequestTodo): ResponseTodo = useCaseExecutor(
             useCase = saveTodoUseCase,
             requestDto = request,
-            requestConverter = { it },
+            requestConverter = { it.core() },
             responseConverter = { it.dto() }
     )
 
-    @PutMapping("/todo")
-    suspend fun updateTodo(@RequestBody request: RequestTodo): ResponseTodo  = useCaseExecutor(
+    @PutMapping("/todo/{id}")
+    suspend fun updateTodo(@PathVariable id: Long, @RequestBody request: RequestTodo): ResponseTodo  = useCaseExecutor(
             useCase = updateTodoUseCase,
             requestDto = request,
-            requestConverter = { it },
+            requestConverter = { it.core(id) },
             responseConverter = { it.dto() }
     )
 
